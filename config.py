@@ -12,7 +12,7 @@ class Config(object):
     MYSQL_DATABASE_HOST = "evgaming.duckdns.org"
 
     # JWT
-    JWT_SECRET_KEY = '@df34FD%d^$W#%s#dsY$'
+    JWT_SECRET_KEY = '@df34FD564gfz75s#dsY$'
     JWT_TOKEN_LOCATION = ['cookies']
     JWT_ACCESS_COOKIE_PATH = '/'
     JWT_REFRESH_COOKIE_PATH = '/'

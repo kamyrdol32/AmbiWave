@@ -75,18 +75,18 @@ a.logo, a:hover.logo {
   align-items: flex-start;
 }
 
-#login {
+#Login {
   max-width: 400px;
   background: #f2f2f2;
   margin: 0 auto;
   padding: 20px;
 }
 
-#login strong {
+#Login strong {
   color: #6f6f6f;
 }
 
-#login input {
+#Login input {
   border: 1px solid grey;
   box-sizing: border-box;
   width: 100%;
@@ -95,7 +95,7 @@ a.logo, a:hover.logo {
   transition-duration: 0.3s;
 }
 
-#login input:hover, #login input:focus, #login input:active {
+#Login input:hover, #Login input:focus, #Login input:active {
 	border: 1px solid grey;
     box-shadow: 0px 0px 8px 1px black;
     -webkit-transition-duration: 0.3s;
@@ -105,11 +105,11 @@ a.logo, a:hover.logo {
     transition-property: box-shadow;
 }
 
-#login input {
+#Login input {
   padding: 10px;
 }
 
-#login input[type=submit] {
+#Login input[type=submit] {
   background-color: #007bff;
   color: white;
   border: 1px solid grey;
@@ -126,7 +126,7 @@ a.logo, a:hover.logo {
   transition-property: color, background-color;
 }
 
-#login input[type=submit]:hover, #login input[type=submit]:focus, #login input[type=submit]:active {
+#Login input[type=submit]:hover, #Login input[type=submit]:focus, #Login input[type=submit]:active {
   background-color: #00448e;
   color: white;
   border: 1px solid grey;
@@ -137,18 +137,18 @@ a.logo, a:hover.logo {
 	box-shadow: 0px 0px 20px 5px black;
 }
 
-#regf {
+#Register {
   width: 400px;
   background: #f2f2f2;
   margin: 0 auto;
   padding: 20px;
     }
 
-#regf strong {
+#Register strong {
   color: #6f6f6f;
 }
 
-#regf input {
+#Register input {
   border: 1px solid grey;
   box-sizing: border-box;
   width: 100%;
@@ -157,7 +157,7 @@ a.logo, a:hover.logo {
   transition-duration: 0.3s;
 }
 
-#regf input:hover, #regf input:focus, #regf input:active {
+#Register input:hover, #Register input:focus, #Register input:active {
   border: 1px solid grey;
     box-shadow: 0px 0px 8px 1px black;
     -webkit-transition-duration: 0.3s;
@@ -167,11 +167,11 @@ a.logo, a:hover.logo {
     transition-property: box-shadow;
 }
 
-#regf input {
+#Register input {
   padding: 10px;
 }
 
-#regf input[type=submit] {
+#Register input[type=submit] {
   background-color: #007bff;
   color: white;
   border: 1px solid grey;
@@ -188,7 +188,7 @@ a.logo, a:hover.logo {
   transition-property: color, background-color;
 }
 
-#regf input[type=submit]:hover, #regf input[type=submit]:focus, #regf input[type=submit]:active {
+#Register input[type=submit]:hover, #Register input[type=submit]:focus, #Register input[type=submit]:active {
   background-color: #00448e;
   color: white;
   border: 1px solid grey;
