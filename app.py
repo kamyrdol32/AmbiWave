@@ -1,12 +1,24 @@
 import functools
 
+from flaskext.mysql import MySQL
 from flask import Flask, render_template, session, redirect
 
+####################
+### CONFIG & DECORATOS
+####################
+
+Type = "Development" # Production or Development
+
+# Pobieranie config'a z pliku config.py
 app = Flask(__name__)
+app.config.from_object("config." + Type + "Config")
 
+# Aktywowanie modułu MySQL & Mail
+mysql = MySQL()
 
-
+####################
 ### DECORATOR ###
+####################
 
 def protected(func):
     @functools.wraps(func)
@@ -22,6 +34,10 @@ def protected(func):
     return secure_function
 
 @app.route('/login')
+def login():
+    return render_template("login.html")
+
+@app.route('/reg')
 def login():
     return render_template("login.html")
 
