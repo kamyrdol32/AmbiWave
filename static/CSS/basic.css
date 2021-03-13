@@ -1,0 +1,308 @@
+body {
+	margin: 0;
+	padding: 0;
+  height: 85vh;
+  background: linear-gradient(270deg, #b14a73, #9b5a99, #746db1, #407cb8, #0087af, #008e9b);
+  background-size: 600% 600%;
+  -webkit-animation: bg 15s ease infinite;
+          animation: bg 15s ease infinite;
+}
+
+* {
+  box-sizing: border-box; outline: none;
+}
+
+a.logo, a:hover.logo {
+  color:#FFF;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "Oliciy";
+  src: url(/static/Fonts/Oliciy.ttf) format("ttf"),
+       url(/static/Fonts/Oliciy.woff) format("woff");
+}
+
+@-webkit-keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+@-moz-keyframes bg {
+  0% {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100% {background-position:0% 50%}
+}
+
+@keyframes bg {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.logotyp {
+	font-size:7vmax;
+	text-align: center;
+  left: 50%;
+  top: 50%;
+  margin-top: 100px;
+	font-family: Oliciy;
+	color: white;
+	text-shadow: 0px 0px 36px rgba(0, 0, 0, 2);
+}
+
+.buttons {
+	margin-top: 15%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hide {
+  display:none;
+}
+
+.modal.show {
+  display:flex!important;
+  flex-direction:column;
+  justify-content:center;
+  align-content:center;
+  align-items: flex-start;
+}
+
+#login {
+  max-width: 400px;
+  background: #f2f2f2;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#login strong {
+  color: #6f6f6f;
+}
+
+#login input {
+  border: 1px solid grey;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 10px 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+#login input:hover, #login input:focus, #login input:active {
+	border: 1px solid grey;
+    box-shadow: 0px 0px 8px 1px black;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+}
+
+#login input {
+  padding: 10px;
+}
+
+#login input[type=submit] {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+
+#login input[type=submit]:hover, #login input[type=submit]:focus, #login input[type=submit]:active {
+  background-color: #00448e;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 25px;
+}
+
+.modal-content {
+	box-shadow: 0px 0px 20px 5px black;
+}
+
+#regf {
+  width: 400px;
+  background: #f2f2f2;
+  margin: 0 auto;
+  padding: 20px;
+    }
+
+#regf strong {
+  color: #6f6f6f;
+}
+
+#regf input {
+  border: 1px solid grey;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 10px 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+#regf input:hover, #regf input:focus, #regf input:active {
+  border: 1px solid grey;
+    box-shadow: 0px 0px 8px 1px black;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+}
+
+#regf input {
+  padding: 10px;
+}
+
+#regf input[type=submit] {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+
+#regf input[type=submit]:hover, #regf input[type=submit]:focus, #regf input[type=submit]:active {
+  background-color: #00448e;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 25px;
+}
+
+.error {
+  text-align: center;
+  margin: auto;
+  background: #FFD9E3;
+  padding: 10px;
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 14px 4px #FF3535;
+}
+
+.success {
+  text-align: center;
+  margin: auto;
+  background: #98FF8D;
+  padding: 10px;
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 14px 4px #469900;
+}
+
+.activate {
+  text-align: center;
+  font-size: 30px;
+  text-shadow: 0px 0px 16px #000;
+  margin-top: 50px;
+  color: #fff;
+}
+
+.mail {
+  margin-top: 30px;
+}
+
+.mail img {
+  width: 100%;
+  max-width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 14px 4px #FFF;
+  margin-left: 20px;
+}
+
+.mail img:hover {
+  box-shadow: 0px 0px 14px 4px #000;
+}
+
+.top {
+  max-height: 80px;
+  min-height: 50px;
+  width: 100%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.toplogo {
+  font-size:2.5vmax;
+  margin-left: 25px;
+  font-family: Oliciy;
+  color: white;
+  text-shadow: 0px 0px 25px rgba(0, 0, 0, 2);
+}
+
+span.a {
+  display: inline-block;
+}
+
+span.b {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -20px;
+  margin-left: auto;
+  margin-right: 20px;
+  left: 0;
+  right: 0;
+  text-align: right;
+  }
+
+span.c {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -15px;
+  margin-left: auto;
+  margin-right: 130px;
+  left: 0;
+  right: 0;
+  text-align: right;
+  font-size:20px;
+  color: white;
+}
+
+@media (max-width: 991px) {
+    .mail img {
+      width: 100%;
+      max-width: 100px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 14px 4px #FFF;
+      margin-left: 20px;
+      margin-top: 30px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .toplogo {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+}
