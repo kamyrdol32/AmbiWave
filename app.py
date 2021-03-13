@@ -1,7 +1,7 @@
 import functools
 
 from flaskext.mysql import MySQL
-from flask import Flask, render_template, session, redirect
+from flask import Flask, render_template, session, redirect, request
 
 ####################
 ### CONFIG & DECORATOS
@@ -24,27 +24,20 @@ def protected(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
         if "isLogged" not in session:
-            return redirect("/login")
+            return redirect("/")
         if "user" not in session:
-            return redirect("/login")
+            return redirect("/")
         if "ID" not in session:
-            return redirect("/login")
+            return redirect("/")
         return func(*args, **kwargs)
 
     return secure_function
 
-@app.route('/login')
-def login():
-    return render_template("login.html")
-
-@app.route('/reg')
-def login():
-    return render_template("login.html")
-
-
-@app.route('/')
-@protected
+@app.route('/', methods=['POST', 'GET'])
 def index():
+    if request.method == "POST":
+        login_mail = request.form.get('login_mail', "", type=str)
+        login_password = request.form.get('login_password', "", type=str)
     return render_template("index.html")
 
 if __name__ == '__main__':
