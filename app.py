@@ -1,7 +1,10 @@
+from functions import *
+
 import functools
 
 from flaskext.mysql import MySQL
-from flask import Flask, render_template, session, redirect, request
+from flask import Flask, render_template, session, redirect, request, flash
+from others import check
 
 ####################
 ### CONFIG & DECORATOS
@@ -36,8 +39,23 @@ def protected(func):
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == "POST":
-        login_mail = request.form.get('login_mail', "", type=str)
+        print("TEST")
+
+        login_email = request.form.get('login_email', "", type=str)
         login_password = request.form.get('login_password', "", type=str)
+
+        # Weryfikacja danych
+        # if not check("Mail", login_mail):
+        #     return flash("Prosze wprowadzić poprawny adres E-Mail!")
+
+        # Development
+        if Type == "Development":
+            print("Logowanie Login: " + login_email)
+            print("Logowanie Hasło: " + login_password)
+
+        if userLogin(login_email, login_password):
+            return True
+
     return render_template("index.html")
 
 if __name__ == '__main__':
