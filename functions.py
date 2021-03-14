@@ -25,9 +25,13 @@ def getUsername(mail):
         try:
             connection = mysql.connect()
             cursor = connection.cursor()
-            cursor.execute("SELECT ID FROM Authorization WHERE Name = '" + str(mail) + "'")
+            cursor.execute("SELECT name FROM Authorization WHERE Mail = '" + str(mail) + "'")
             Name = cursor.fetchone()
             cursor.close()
+
+            # Development
+            if Type == "Development":
+                print("getUsername: " + Name[0])
 
             return Name[0]
 
@@ -126,8 +130,6 @@ def userActivate(ID, KEY):
 
             else:
 
-                print("Błędny token!")
-
                 return False
 
             # Rozłączenie z bazą MySQL
@@ -146,7 +148,7 @@ def getSongsList():
         connection = mysql.connect()
         cursor = connection.cursor()
 
-        cursor.execute("SELECT `ID`, `Name`, `Artist`, `File` FROM Songs")
+        cursor.execute("SELECT `ID`, `Name`, `Artist`, `Time`, `File` FROM Songs")
         SongsList = cursor.fetchall()
 
         # Development

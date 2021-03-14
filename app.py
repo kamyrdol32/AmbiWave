@@ -81,7 +81,8 @@ def index():
 
         # Weryfikacja danych
         if not register_password == register_password_2:
-            flash("Hasła nie są zgodne!")
+            flash("Hasła muszą byc identyczne!", "error")
+            return redirect("/")
 
         # Development
         if Type == "Development":
@@ -92,16 +93,13 @@ def index():
 
         if userRegister(register_username, register_email, register_password):
 
-            session['isLogged'] = True
-            session['user'] = register_email
-            session['username'] = register_username
-            session['ID'] = getUserID(register_email)
+            flash("Konto zostało stworzone, na podany adres E-mail został wysłany kod aktywacyjny", "success")
 
-            return redirect("/home")
+            return redirect("/")
 
         else:
 
-            flash("Podany E-Mail !")
+            flash("Podany E-Mail jest juz zarejestrowany!", "error")
             return redirect("/")
 
     return render_template("index.html")
@@ -114,7 +112,10 @@ def activate(ID, KEY):
         print("Activate ID: " + str(ID))
         print("Activate KEY: " + str(KEY))
 
-    userActivate(ID, KEY)
+    if userActivate(ID, KEY):
+        flash("Konto zostało pomyślnie aktywowane!", "success")
+    else:
+        flash("Nastąpił błąd podczas aktywacji!", "error")
 
     return redirect("/")
 
