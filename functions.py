@@ -71,9 +71,9 @@ def userRegister(register_username, register_email, register_password):
                 register_password = md5((register_password + Token).encode('utf-8')).hexdigest()
 
                 # Dodanie do bazy MySQL
-                # to_MySQL = (str(register_email), str(register_username), str(register_password), str(Token))
-                # cursor.execute("INSERT INTO Authorization (Mail, Name, Password, Token) VALUES (%s, %s, %s, %s)", to_MySQL)
-                # connection.commit()
+                to_MySQL = (str(register_email), str(register_username), str(register_password), str(Token))
+                cursor.execute("INSERT INTO Authorization (Mail, Name, Password, Token) VALUES (%s, %s, %s, %s)", to_MySQL)
+                connection.commit()
 
                 sendWelcomeMail(str(register_email), str(getUserID(register_email)), str(Token))
 
@@ -130,6 +130,10 @@ def getSongsList():
 
         cursor.execute("SELECT `ID`, `Name`, `Artist`, `File` FROM Songs")
         SongsList = cursor.fetchall()
+
+        # Development
+        if Type == "Development":
+            print("SongsList: " + str(SongsList))
 
         return SongsList
 
