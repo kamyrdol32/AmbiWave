@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Title -->
-    <title>AmbiWave - {% block title %}{% endblock %} Page</title>
+    <title>AmbiWave</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='CSS/basic.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='Bootstrap/bootstrap.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
@@ -24,8 +24,8 @@
         <span class="a">
             <div class="toplogo">AmbiWave</div>
         </span>
-        <span class="c">Witaj <b>{{ session['username'] }}</b></span>
-        <span class="b">
+        <span class="b">Witaj <b>{{ session['username'] }}</b></span>
+        <span class="c">
             <form method="post">
                 <a class="btn btn-primary" href="/logout">Wyloguj</a>
     	    </form>
