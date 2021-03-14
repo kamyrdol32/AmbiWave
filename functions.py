@@ -20,6 +20,23 @@ def getUserID(mail):
     else:
         print("getUserID - Missing value")
 
+def getUsername(mail):
+    if mail:
+        try:
+            connection = mysql.connect()
+            cursor = connection.cursor()
+            cursor.execute("SELECT ID FROM Authorization WHERE Name = '" + str(mail) + "'")
+            Name = cursor.fetchone()
+            cursor.close()
+
+            return Name[0]
+
+        except Exception as Error:
+            print("getUsername - Error")
+            print("Error: " + str(Error))
+    else:
+        print("getUsername - Missing value")
+
 ### LOGOWANIE
 
 def userLogin(login_email, login_password):

@@ -61,6 +61,7 @@ def index():
 
             session['isLogged'] = True
             session['user'] = login_email
+            session['username'] = getUsername(login_email)
             session['ID'] = getUserID(login_email)
 
             return redirect("/home")
@@ -93,6 +94,7 @@ def index():
 
             session['isLogged'] = True
             session['user'] = register_email
+            session['username'] = register_username
             session['ID'] = getUserID(register_email)
 
             return redirect("/home")
@@ -114,6 +116,14 @@ def activate(ID, KEY):
 
     userActivate(ID, KEY)
 
+    return redirect("/")
+
+@app.route('/logout')
+def logout():
+    session.pop('isLogged', None)
+    session.pop('user', None)
+    session.pop('username', None)
+    session.pop('ID', None)
     return redirect("/")
 
 ####################
