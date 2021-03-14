@@ -125,7 +125,7 @@ def home():
 
     SongsList = getSongsList()
 
-    return render_template("home.html")
+    return render_template("home.html", SongsList=SongsList)
 
 
 if __name__ == '__main__':

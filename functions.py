@@ -128,21 +128,10 @@ def getSongsList():
         connection = mysql.connect()
         cursor = connection.cursor()
 
-        cursor.execute("SELECT Token FROM Authorization WHERE ID = '" + str(ID) + "'")
-        Token = cursor.fetchone()
+        cursor.execute("SELECT `ID`, `Name`, `Artist`, `File` FROM Songs")
+        SongsList = cursor.fetchall()
 
-        if Token[0] == KEY:
-
-            cursor.execute("UPDATE Authorization SET Activate = '" + str(1) + "' WHERE `ID` = '" + str(ID) + "'")
-            connection.commit()
-
-            return True
-
-        else:
-
-            print("Błędny token!")
-
-            return False
+        return SongsList
 
         # Rozłączenie z bazą MySQL
         cursor.close()
