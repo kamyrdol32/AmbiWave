@@ -37,13 +37,14 @@ def userLogin(login_email, login_password):
                 cursor.execute("SELECT `Password`, `Token`, `Name`, `Activate` FROM `Authorization` WHERE `Mail` = '" + login_email + "'")
                 Data = cursor.fetchall()[0]
 
-                if md5((login_password + Data[1]).encode('utf-8')).hexdigest() == Data[0]:
+                if md5((login_password + Data[1]).encode('utf-8')).hexdigest() == Data[0] and Data[3] == True:
 
+                    flash("Pomyślnie zalogowano", "success")
                     return True
 
                 else:
 
-                    print("Bledne hasło")
+                    flash("Wprowadz poprawne hasło lub aktywuj konto", "error")
                     return False
 
             else:
@@ -144,3 +145,10 @@ def getSongsList():
     except Exception as Error:
         print("userActivate - MySQL Error")
         print("Error: " + str(Error))
+
+### OTHERS
+
+def sendWelcomeMail(recipient, id, token):
+    msg = Message('AmbiWave', sender='ambiwaveapp@gmail.com', recipients=[recipient])
+    msg.html = "Kod aktywacyjny: http://evgaming.duckdns.org:70/activate/"+ id +"/" + token
+    mail.send(msg)

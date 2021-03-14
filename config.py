@@ -14,8 +14,8 @@ class Config(object):
     # MAIL
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_PORT = 465
-    MAIL_USERNAME = "kamyrdol32test@gmail.com"
-    MAIL_PASSWORD = "iqvfqchwmxycqdbk"
+    MAIL_USERNAME = "ambiwaveapp@gmail.com"
+    MAIL_PASSWORD = "Amb!W4v3App"
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
 
