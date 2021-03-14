@@ -99,7 +99,7 @@ def index():
 
         else:
 
-            flash("Błąd!")
+            flash("Podany E-Mail !")
             return redirect("/")
 
     return render_template("index.html")

@@ -71,11 +71,11 @@ def userRegister(register_username, register_email, register_password):
                 register_password = md5((register_password + Token).encode('utf-8')).hexdigest()
 
                 # Dodanie do bazy MySQL
-                to_MySQL = (str(register_email), str(register_username), str(register_password), str(Token))
-                cursor.execute("INSERT INTO Authorization (Mail, Name, Password, Token) VALUES (%s, %s, %s, %s)", to_MySQL)
-                connection.commit()
+                # to_MySQL = (str(register_email), str(register_username), str(register_password), str(Token))
+                # cursor.execute("INSERT INTO Authorization (Mail, Name, Password, Token) VALUES (%s, %s, %s, %s)", to_MySQL)
+                # connection.commit()
 
-                sendWelcomeMail(register_email, getUserID(register_email), str(Token))
+                sendWelcomeMail(str(register_email), str(getUserID(register_email)), str(Token))
 
                 return True
 
