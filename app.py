@@ -3,6 +3,7 @@ from functions import *
 import functools
 
 from flaskext.mysql import MySQL
+from flask_mail import Mail
 from flask import Flask, render_template, session, redirect, request, flash
 from others import check
 
@@ -19,6 +20,7 @@ app.config.from_object("config." + Type + "Config")
 # Aktywowanie modułu MySQL & Mail
 mysql = MySQL()
 mysql.init_app(app)
+mail = Mail(app)
 
 ####################
 ### DECORATOR ###
@@ -39,33 +41,46 @@ def protected(func):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    # if request.method == "POST":
-    #
-    #     login_email = request.form.get('login_email', "", type=str)
-    #     login_password = request.form.get('login_password', "", type=str)
-    #
 
-    #     # if not check("Mail", login_mail):
-    #     #     return flash("Prosze wprowadzić poprawny adres E-Mail!")
-    #
-    #     # Development
-    #     if Type == "Development":
-    #         print("Logowanie Login: " + login_email)
-    #         print("Logowanie Hasło: " + login_password)
-    #
-    #     if userLogin(login_email, login_password):
-    #         return True
+    # Logowanie
+    if request.method == "POST" and request.form.get('action', "", type=str) == "Login":
+
+        login_email = request.form.get('login_email', "", type=str)
+        login_password = request.form.get('login_password', "", type=str)
 
 
-    if request.method == "POST":
+        # if not check("Mail", login_email):
+        #     return flash("Prosze wprowadzić poprawny adres E-Mail!")
+
+        # Development
+        if Type == "Development":
+            print("Logowanie Login: " + login_email)
+            print("Logowanie Hasło: " + login_password)
+
+        if userLogin(login_email, login_password):
+
+            session['isLogged'] = True
+            session['user'] = login_email
+            session['ID'] = getUserID(login_email)
+
+            return redirect("/home")
+
+        else:
+
+            flash("Podane konto nie istnieje w naszej bazie danych!", "error")
+            return redirect("/")
+
+    # Rejestracja
+    if request.method == "POST" and request.form.get('action', "", type=str) == "Register":
+
         register_username = request.form.get('register_username', "", type=str)
         register_email = request.form.get('register_email', "", type=str)
         register_password = request.form.get('register_password', "", type=str)
         register_password_2 = request.form.get('register_password_2', "", type=str)
 
-        # # Weryfikacja danych
-        # if not register_password == register_password_2:
-        #     flash("Hasła nie są zgodne!")
+        # Weryfikacja danych
+        if not register_password == register_password_2:
+            flash("Hasła nie są zgodne!")
 
         # Development
         if Type == "Development":
@@ -75,7 +90,17 @@ def index():
             print("Rejestracja Hasło: " + register_password_2)
 
         if userRegister(register_username, register_email, register_password):
-            print("udało sie ")
+
+            session['isLogged'] = True
+            session['user'] = register_email
+            session['ID'] = getUserID(register_email)
+
+            return redirect("/home")
+
+        else:
+
+            flash("Błąd!")
+            return redirect("/")
 
     return render_template("index.html")
 
@@ -90,6 +115,14 @@ def activate(ID, KEY):
     userActivate(ID, KEY)
 
     return redirect("/")
+
+####################
+### HOME ###
+####################
+
+@app.route('/home', methods=['POST', 'GET'])
+def home():
+    return render_template("home.html")
 
 
 if __name__ == '__main__':

@@ -3,6 +3,24 @@ from hashlib import md5
 from app import *
 from others import *
 
+def getUserID(mail):
+    if mail:
+        try:
+            connection = mysql.connect()
+            cursor = connection.cursor()
+            cursor.execute("SELECT ID FROM Authorization WHERE Mail = '" + str(mail) + "'")
+            ID = cursor.fetchone()
+            cursor.close()
+
+            return ID[0]
+
+        except Exception as Error:
+            print("getUserID - Error")
+            print("Error: " + str(Error))
+    else:
+        print("getUserID - Missing value")
+
+### LOGOWANIE
 
 def userLogin(login_email, login_password):
     if login_email and login_password:
@@ -19,12 +37,17 @@ def userLogin(login_email, login_password):
                 cursor.execute("SELECT `Password`, `Token`, `Name`, `Activate` FROM `Authorization` WHERE `Mail` = '" + login_email + "'")
                 Data = cursor.fetchall()[0]
 
-                print("Tak")
-                return True
+                if md5((login_password + Data[1]).encode('utf-8')).hexdigest() == Data[0]:
+
+                    return True
+
+                else:
+
+                    print("Bledne hasło")
+                    return False
 
             else:
 
-                print("Nie")
                 return False
 
         # Error Log
@@ -52,6 +75,8 @@ def userRegister(register_username, register_email, register_password):
                 cursor.execute("INSERT INTO Authorization (Mail, Name, Password, Token) VALUES (%s, %s, %s, %s)", to_MySQL)
                 connection.commit()
 
+                sendWelcomeMail(register_email, getUserID(register_email), str(Token))
+
                 return True
 
             else:
@@ -61,7 +86,7 @@ def userRegister(register_username, register_email, register_password):
 
         # Error Log
         except Exception as Error:
-            print("userLogin - MySQL Error")
+            print("userRegister - MySQL Error")
             print("Error: " + str(Error))
 
 def userActivate(ID, KEY):
@@ -92,5 +117,5 @@ def userActivate(ID, KEY):
 
         # Error Log
         except Exception as Error:
-            print("userLogin - MySQL Error")
+            print("userActivate - MySQL Error")
             print("Error: " + str(Error))

@@ -11,13 +11,13 @@ class Config(object):
     MYSQL_DATABASE_DB = "AmbiWave"
     MYSQL_DATABASE_HOST = "evgaming.duckdns.org"
 
-    # JWT
-    JWT_SECRET_KEY = '@df34FD564gfz75s#dsY$'
-    JWT_TOKEN_LOCATION = ['cookies']
-    JWT_ACCESS_COOKIE_PATH = '/'
-    JWT_REFRESH_COOKIE_PATH = '/'
-    JWT_COOKIE_CSRF_PROTECT = True
-    JWT_COOKIE_SECURE = False
+    # MAIL
+    MAIL_SERVER = "smtp.gmail.com"
+    MAIL_PORT = 465
+    MAIL_USERNAME = "ambiwaveapp@gmail.com"
+    MAIL_PASSWORD = "Amb!W4v3App"
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
 
 class ProductionConfig(Config):
     pass

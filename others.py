@@ -1,6 +1,15 @@
+from app import *
+
 import random
 import re
 import string
+
+from flask_mail import Message
+
+def sendWelcomeMail(recipient, id, token):
+    msg = Message('AmbiWave', sender='kamyrdol32test@gmail.com', recipients=[recipient])
+    msg.html = "Kod aktywacyjny: http://evgaming.duckdns.org:70/activate/" + id +"/" + token
+    mail.send(msg)
 
 def tokenGenerator(stringlength=10):
     letters = string.ascii_lowercase
