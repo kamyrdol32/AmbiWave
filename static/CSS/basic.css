@@ -269,7 +269,7 @@ span.b {
   height: 100px;
   margin-top: -15px;
   margin-left: auto;
-  margin-right: 130px;
+  margin-right: 20px;
   left: 0;
   right: 0;
   text-align: right;
@@ -287,6 +287,17 @@ span.c {
   left: 0;
   right: 0;
   text-align: right;
+}
+
+.player {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+  width: 100%;
+}
+
+.songs {
+  z-index: 1;
 }
 
 .player {

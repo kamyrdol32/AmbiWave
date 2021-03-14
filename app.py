@@ -122,6 +122,9 @@ def activate(ID, KEY):
 
 @app.route('/home', methods=['POST', 'GET'])
 def home():
+
+    SongsList = getSongsList()
+
     return render_template("home.html")
 
 

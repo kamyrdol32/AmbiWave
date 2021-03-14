@@ -119,3 +119,35 @@ def userActivate(ID, KEY):
         except Exception as Error:
             print("userActivate - MySQL Error")
             print("Error: " + str(Error))
+
+### LOGOWANIE
+
+def getSongsList():
+    try:
+        # Łączność z MYSQL
+        connection = mysql.connect()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT Token FROM Authorization WHERE ID = '" + str(ID) + "'")
+        Token = cursor.fetchone()
+
+        if Token[0] == KEY:
+
+            cursor.execute("UPDATE Authorization SET Activate = '" + str(1) + "' WHERE `ID` = '" + str(ID) + "'")
+            connection.commit()
+
+            return True
+
+        else:
+
+            print("Błędny token!")
+
+            return False
+
+        # Rozłączenie z bazą MySQL
+        cursor.close()
+
+    # Error Log
+    except Exception as Error:
+        print("userActivate - MySQL Error")
+        print("Error: " + str(Error))
