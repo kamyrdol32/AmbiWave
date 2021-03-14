@@ -2,10 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AmbiWave - Strona główna</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='CSS/basic.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='Bootstrap/bootstrap.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="{{ url_for('static',filename='JS/basic.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="{{ url_for('static',filename='JS/bootstrap.js') }}" ></script>
 </head>
 <body>
-
+    <div class="container">
+	    <div class="logotyp"><a class="logo" href=".">AmbiWave</a></div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class={{ category }}>{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="buttons">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#logowanie">
+                Logowanie
+            </button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#rejestracja">
+                Rejestracja
+            </button>
+        </div>
+        <!-- Logowanie -->
+        <div class="modal fade" id="logowanie" tabindex="-1" role="dialog" aria-labelledby="log" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="log">Logowanie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form id="Login" method="post">
+                                <input type="hidden" name="action" value="Login">
+                                <input type="email" name="login_email" placeholder="Email" required>
+                                <input type="password" name="login_password" placeholder="Hasło" required>
+                                <input type="submit" value="Zaloguj się">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Rejestracja -->
+        <div class="modal fade" id="rejestracja" tabindex="-1" role="dialog" aria-labelledby="rej" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rej">Rejestracja</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form id="Register" method="post">
+                                <input type="hidden" name="action" value="Register">
+                                <input type="text" name="register_username" placeholder="Nazwa użytkownika" required autofocus><br>
+                                <input type="email" name="register_email" placeholder="Email" required><br>
+                                <input type="password" name="register_password" placeholder="Hasło" required><br>
+                                <input type="password" name="register_password_2" placeholder="Potwierdź hasło" required><br>
+                                <input type="submit" value="Zarejestruj się"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
