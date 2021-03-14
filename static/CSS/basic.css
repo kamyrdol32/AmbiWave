@@ -289,6 +289,17 @@ span.c {
   text-align: right;
 }
 
+.player {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+  width: 100%;
+}
+
+.songs {
+  z-index: 1;
+}
+
 @media (max-width: 991px) {
     .mail img {
       width: 100%;
