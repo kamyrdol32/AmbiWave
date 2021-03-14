@@ -2,17 +2,21 @@
 <html lang="en">
 
 <head>
+    <!-- Meta -->
     <meta charset="UTF-8">
-    <title>AmbiWave</title>
+    <meta name="description" content="Aplikacja do zarządzania kadrami">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Kamil Żegleń">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>AmbiWave - {% block title %}{% endblock %} Page</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='CSS/basic.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='Bootstrap/bootstrap.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="{{ url_for('static',filename='JS/basic.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="{{ url_for('static',filename='JS/bootstrap.js') }}" ></script>
-    <script src="{{ url_for('static',filename='JS/player.js') }}" ></script>
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -20,8 +24,8 @@
         <span class="a">
             <div class="toplogo">AmbiWave</div>
         </span>
-        <span class="b">Witaj <b>Tutaj nick bedzie</b></span>
-        <span class="c">
+        <span class="c">Witaj <b>{{ session['username'] }}</b></span>
+        <span class="b">
             <form method="post">
       	        <button type="submit" class="btn btn-primary" name="logout">Wyloguj</button>
     	    </form>
