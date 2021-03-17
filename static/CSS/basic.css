@@ -13,8 +13,17 @@ body {
 }
 
 a.logo, a:hover.logo {
-  color:#FFF;
+  color: white;
   text-decoration: none;
+}
+
+a.tophref {
+  transition: 0.25s;
+}
+
+a:hover.tophref {
+  opacity: 0.5;
+  transition: 0.25s;
 }
 
 @font-face {
