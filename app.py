@@ -4,7 +4,7 @@ import functools
 
 from flaskext.mysql import MySQL
 from flask_mail import Mail
-from flask import Flask, render_template, session, redirect, request, flash
+from flask import Flask, render_template, session, redirect, request, flash, jsonify
 from others import check
 
 ####################
@@ -135,21 +135,38 @@ def logout():
 def home():
 
     SongsList = getSongsList()
+    FavoriteList = getFavoritesSongsList(session["ID"])
 
-    return render_template("home.html", SongsList=SongsList)
+    print(SongsList)
+    print(FavoriteList)
+
+    return render_template("home.html", SongsList=SongsList, FavoriteList=FavoriteList)
 
 
 @app.route('/favorite', methods=['POST', 'GET'])
 def favorite():
 
-    return render_template("favorite.html")
+    Songs = []
 
-@app.route('/favorite/add', methods=['POST', 'GET'])
+    FavoritesSongs = getFavoritesSongsList(session["ID"])
+    for Data in FavoritesSongs:
+        Songs.append(getSongInfo(Data))
+
+        print(Songs)
+
+    return render_template("favorite.html", SongsList=Songs)
+
+@app.route('/favorite/add')
 def favorite_add():
-    if request.method == "POST":
-        print("Tak")
+    SongID = request.args.get('id', 0, type=int)
 
-        return True
+    # Development
+    if Type == "Development":
+        print("Favorite: " + str(SongID))
+
+    addToFavorite(session["ID"], SongID)
+
+    return jsonify(SongID)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=70)

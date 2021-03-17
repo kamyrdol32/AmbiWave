@@ -140,7 +140,7 @@ def userActivate(ID, KEY):
             print("userActivate - MySQL Error")
             print("Error: " + str(Error))
 
-### LOGOWANIE
+### SONGS
 
 def getSongsList():
     try:
@@ -160,10 +160,103 @@ def getSongsList():
         # Rozłączenie z bazą MySQL
         cursor.close()
 
+
     # Error Log
     except Exception as Error:
         print("userActivate - MySQL Error")
         print("Error: " + str(Error))
+
+def getSongInfo(ID):
+    try:
+        # Łączność z MYSQL
+        connection = mysql.connect()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT `ID`, `Name`, `Artist`, `Time`, `File` FROM Songs WHERE ID = '" + str(ID) + "'")
+        SongInfo = cursor.fetchall()
+
+        # Development
+        if Type == "Development":
+            print("SongInfo: " + str(SongInfo))
+
+        return SongInfo
+
+        # Rozłączenie z bazą MySQL
+        cursor.close()
+
+
+    # Error Log
+    except Exception as Error:
+        print("userActivate - MySQL Error")
+        print("Error: " + str(Error))
+
+def getFavoritesSongsList(UserID):
+    try:
+        # Łączność z MYSQL
+        connection = mysql.connect()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT Song_ID FROM Favorites WHERE User_ID = '" + str(UserID) + "'")
+        SongsList = cursor.fetchall()
+
+        Table = []
+
+        for Data in SongsList:
+            Table.append(Data[0])
+
+        # Development
+        if Type == "Development":
+            print("FavoritesSongsList: " + str(Table))
+
+        return Table
+
+        # Rozłączenie z bazą MySQL
+        cursor.close()
+
+
+    # Error Log
+    except Exception as Error:
+        print("userActivate - MySQL Error")
+        print("Error: " + str(Error))
+
+def addToFavorite(userID, songID):
+    if userID and songID:
+        try:
+            # Łączność z MYSQL
+            connection = mysql.connect()
+            cursor = connection.cursor()
+
+            cursor.execute("SELECT COUNT(1) FROM `Favorites` WHERE `User_ID` = '" + str(userID) + "' AND `Song_ID` = '" + str(songID) + "'")
+            if not cursor.fetchone()[0]:
+
+                # Dodanie do bazy MySQL
+                to_MySQL = (str(userID), str(songID))
+                cursor.execute("INSERT INTO Favorites (User_ID, Song_ID) VALUES (%s, %s)", to_MySQL)
+                connection.commit()
+
+                # Development
+                if Type == "Development":
+                    print("FavoritesSongs Add (" + str(userID) + "): " + str(songID))
+
+            else:
+
+                # Usuwanie
+                cursor.execute("DELETE FROM Favorites WHERE  User_ID = '" + str(userID) + "' AND  Song_ID = '" + str(songID) + "'")
+                connection.commit()
+
+                # Development
+                if Type == "Development":
+                    print("FavoritesSongs Remove (" + str(userID) + "): " + str(songID))
+
+            return True
+
+            # Rozłączenie z bazą MySQL
+            cursor.close()
+
+        # Error Log
+        except Exception as Error:
+            print("addToFavorite - MySQL Error")
+            print("Error: " + str(Error))
 
 ### OTHERS
 
