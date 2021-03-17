@@ -30,10 +30,13 @@ def protected(func):
     @functools.wraps(func)
     def secure_function(*args, **kwargs):
         if "isLogged" not in session:
+            flash("Ta zawartość wymaga posiadania konta na stronie", "error")
             return redirect("/")
         if "user" not in session:
+            flash("Ta zawartość wymaga posiadania konta na stronie", "error")
             return redirect("/")
         if "ID" not in session:
+            flash("Ta zawartość wymaga posiadania konta na stronie", "error")
             return redirect("/")
         return func(*args, **kwargs)
 
@@ -120,6 +123,7 @@ def activate(ID, KEY):
     return redirect("/")
 
 @app.route('/logout')
+@protected
 def logout():
     session.pop('isLogged', None)
     session.pop('user', None)
@@ -132,6 +136,7 @@ def logout():
 ####################
 
 @app.route('/home', methods=['POST', 'GET'])
+@protected
 def home():
 
     SongsList = getSongsList()
@@ -142,21 +147,41 @@ def home():
 
     return render_template("home.html", SongsList=SongsList, FavoriteList=FavoriteList)
 
+@app.route('/song/<int:ID>')
+@protected
+def song(ID):
+
+    print(ID)
+
+    return render_template("song.html")
 
 @app.route('/favorite', methods=['POST', 'GET'])
-def favorite():
+@app.route('/favorite/<token>', methods=['POST', 'GET'])
+@protected
+def favorite(token=False):
 
     Songs = []
 
-    FavoritesSongs = getFavoritesSongsList(session["ID"])
-    for Data in FavoritesSongs:
-        Songs.append(getSongInfo(Data))
+    # Własna playlista
+    if not token:
 
-        print(Songs)
+        FavoritesSongs = getFavoritesSongsList(session["ID"])
+        for Data in FavoritesSongs:
+            Songs.append(getSongInfo(Data))
+
+    # Kogos playlista
+    else:
+
+        ID = getUserIDbyToken(token)
+
+        FavoritesSongs = getFavoritesSongsList(ID)
+        for Data in FavoritesSongs:
+            Songs.append(getSongInfo(Data))
 
     return render_template("favorite.html", SongsList=Songs)
 
 @app.route('/favorite/add')
+@protected
 def favorite_add():
     SongID = request.args.get('id', 0, type=int)
 

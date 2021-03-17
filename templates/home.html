@@ -28,15 +28,15 @@
                 {% for Data in SongsList %}
                     <tr>
                         <th scope="row">{{ Data[0] }}</th>
-                        <td>{{ Data[1] }}</td>
+                        <td><a href="/song/{{ Data[0] }}">{{ Data[1] }}</a></td>
                         <td>{{ Data[2] }}</td>
                         <td>{{ Data[3] }}</td>
                         <td><i class="fas fa-play" onclick="player_change('/static/Songs/{{ Data[4] }}');"></i></td>
                         <td>
                             {% if Data[0] in FavoriteList %}
-                                <i class="fas fa-heart" onclick="favorite('{{ Data[0] }}');"></i>
+                                <i id="Fav_{{ Data[0] }}" class="fas fa-heart" onclick="favorite('{{ Data[0] }}');"></i>
                             {% else %}
-                                <i class="far fa-heart" onclick="favorite('{{ Data[0] }}');"></i>
+                                <i id="Fav_{{ Data[0] }}" class="far fa-heart" onclick="favorite('{{ Data[0] }}');"></i>
                             {% endif %}
                         </td>
                     </tr>
