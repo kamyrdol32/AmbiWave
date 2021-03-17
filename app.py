@@ -139,5 +139,15 @@ def home():
     return render_template("home.html", SongsList=SongsList)
 
 
+@app.route('/favorite', methods=['POST', 'GET'])
+def favorite():
+
+    return render_template("favorite.html")
+
+@app.route('/favorite/add', methods=['POST', 'GET'])
+def favorite_add():
+    # if request.method == "POST":
+    print("Tak")
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=70)
