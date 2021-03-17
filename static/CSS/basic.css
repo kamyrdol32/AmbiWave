@@ -284,7 +284,7 @@ span.e {
 }
 
 span.txt {
-  margin-left: 12px;
+  margin-left: 15px;
   color: white;
 }
 
@@ -415,7 +415,7 @@ i {
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 784px) {
   span.txt{
     opacity: 0.0;
     font-size: 0px;
@@ -423,7 +423,7 @@ i {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 785px) {
   span.txt{
     opacity: 1.0;
     font-size: 20px;
