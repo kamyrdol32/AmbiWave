@@ -146,8 +146,10 @@ def favorite():
 
 @app.route('/favorite/add', methods=['POST', 'GET'])
 def favorite_add():
-    # if request.method == "POST":
-    print("Tak")
+    if request.method == "POST":
+        print("Tak")
+
+        return True
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=70)
