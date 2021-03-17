@@ -2,35 +2,59 @@
 <html lang="en">
 
 <head>
-    <!-- Meta -->
     <meta charset="UTF-8">
-    <meta name="description" content="Aplikacja do zarządzania kadrami">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Kamil Żegleń">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbiWave - Strona główna</title>
+    <script src="{{ url_for('static',filename='JS/basic.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="{{ url_for('static',filename='JS/bootstrap.js') }}" ></script>
 
-    <!-- Title -->
-    <title>AmbiWave</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='CSS/basic.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='Bootstrap/bootstrap.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block css %}{% endblock %}
 </head>
 <body>
     <div class="top">
-        <span class="a">
-            <div class="toplogo">AmbiWave</div>
-        </span>
-        <span class="b">Witaj <b>{{ session['username'] }}</b></span>
-        <span class="c">
-            <form method="post">
-                <a class="btn btn-primary" href="/logout">Wyloguj</a>
-    	    </form>
-        </span>
+  		<span class="a"><div class="toplogo"><a class="logo" href=".">AmbiWave</a></div></span>
+        <span class="b"><a class="tophref" href="#"><i class="fas fa-music"></i><span class="txt">Lista utworów</span></a></span>
+        <span class="c"><a class="tophref" href="#"><i class="fas fa-heart"></i><span class="txt">Ulubione</span></a></span>
+        <span class="d"><i class="fas fa-user"></i><span class="txt"><b>{{ session['username'] }}</b></span></span>
+  		<span class="e"><a class="btn btn-primary" href="/logout">Wyloguj</a></span>
   	</div>
+
+    <div class="player">
+          <audio id="player">
+            <source src="/static/Songs/Paris.mp3">
+          </audio>
+          <div class="audio-player">
+            <div class="timeline">
+            <div class="progress"></div>
+          </div>
+          <div class="controls">
+            <div class="play-container">
+              <div class="toggle-play fas fa-play">
+              </div>
+            </div>
+            <div class="time">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+          </div>
+            <div class="name">AmbiPlayer</div>
+            <div class="volume-container">
+            <div class="volume-button">
+              <div class="volume fas fa-volume-up"></div>
+            </div>
+            <div class="volume-slider">
+              <div class="volume-percentage"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     {% block content %}{% endblock %}
 
