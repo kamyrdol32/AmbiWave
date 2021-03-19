@@ -9,5 +9,49 @@
 
 <!-- Content -->
 {% block content %}
-
+<div class="headtxt"><i class="fas fa-music hdtxt"></i>Informacje o utworze</div>
+    <div class="content">
+                <div class="likes">
+                    <dl>
+                        <dt>Oceń utwór</dt>
+                        <dd><b>6</b><i class="fas fa-thumbs-up"></i><i class="fas fa-thumbs-down"></i><b>4</b></dd>
+                        <dt><div class="bar">
+                            <div class="like" style="width:60%"px></div>
+                            <div class="dislike" style="width:40%"px></div>
+                        </div></dt>
+                     </dl>
+                </div>
+        <div class="song">
+            <div class="icon"><i class="fas fa-compact-disc"></i></div>
+                <div class="info">
+                <dl>
+                  <dt>Tytuł:</dt>
+                  <dd>Siema</dd>
+                  <dt>Wykonawca:</dt>
+                  <dd>Eluwa</dd>
+                  <dt>Czas trwania:</dt>
+                  <dd>3:25</dd>
+                  <dt class="dtright">Odtwórz <i class="fas fa-play" onclick="player_change('22.mp3');"></i></dt>
+                  <dt class="dtright">Dodaj do ulubionych <i class="far fa-heart" onclick=""></i></dt>
+                </dl>
+            </div>
+        </div>
+        <div class="comments">
+            <dt>Komentarze<i class="fas fa-comments"></i></dt>
+            <div class="commbox">
+                <form action="" method="post">
+                <div>
+                <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1em;"></textarea>
+                </div>
+                <input type="submit" value="Dodaj">
+                </form>
+            </div>
+            <div class="comment">
+             <p class="user"><i class="fas fa-user"></i>domitek</p>
+             <p>ale super nutka :)</p>
+             <p class="user"><i class="fas fa-user"></i>ziomson121423456456</p>
+             <p>normalny, zdrowy, konstruktywny komentarz</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
