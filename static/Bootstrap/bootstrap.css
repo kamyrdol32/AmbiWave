@@ -1514,9 +1514,13 @@ pre code {
 }
 
 .table {
-  width: 100%;
+  width: 98%;
   margin-bottom: 1rem;
+  margin-left: 1%;
+  margin-top: 1rem;
   background-color: transparent;
+  border-radius: 25px;
+  box-shadow: 0px 0px 15px 2px #000;
 }
 
 .table th,
@@ -1722,7 +1726,7 @@ pre code {
 
 .table-dark {
   color: #fff;
-  background-color: #212529;
+  background: rgba(13, 15, 16, 0.8);
 }
 
 .table-dark th,
