@@ -13,3 +13,13 @@ function favorite(ID) {
         }
     });
 }
+
+function clipcopy() {
+    var copyText = document.getElementById("shareid");
+    var changeIcon = document.getElementById("cp");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    changeIcon.classList.remove('fa-copy');
+    changeIcon.classList.add('fa-check');
+}

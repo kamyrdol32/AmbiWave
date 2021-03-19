@@ -446,22 +446,76 @@ i.hdtxt {
   margin-bottom: 6.8vh;
   }
 
+.collulub {
+  overflow-y: auto;
+  height: auto;
+  margin-bottom: 4vh;
+  }
+
+.share {
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 50px;
+  position: relative;
+  margin-bottom: 10vh;
+  text-shadow: 0 0 15px #000;
+}
+
+.sharebutn {
+  font-size: 2vh;
+  text-shadow: 0 0 10px #000;
+}
+
+.sharebutn i {
+  margin-left: 15px;
+  margin-right: 35px;
+}
+
+.sharebutn input {
+  margin-left: 10px;
+}
+
+.twitter-share-button {
+  margin-right: 40px;
+  box-shadow: 0 0 10px #000;
+  border-radius: 5px;
+}
+
 @media (max-width: 784px) {
-  span.txt {
+  span.txt{
     opacity: 0.0;
     font-size: 0px;
     transition: 0.25s;
   }
-
-  .headtxt {
+  .headtxt{
     font-size: 4.5vmin;
     transition: 0.25s;
     margin-top: 10px;
   }
+  .hdtxt{
+   font-size: 0px;
+   transition: 0.25s;
+  }
+  .sharebutn {
+    margin-left: 40px;
+    font-size: 2vh;
+  }
 
-  .hdtxt {
-    font-size: 0px;
-    transition: 0.25s;
+  .sharebutn i {
+    margin-left: 15px;
+    margin-right: 25px;
+  }
+
+  .sharebutn input {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .collulub {
+  overflow-y: auto;
+  height: auto;
+  margin-bottom: 2vh;
   }
 }
 
