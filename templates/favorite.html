@@ -10,7 +10,11 @@
 <!-- Content -->
 {% block content %}
     <div class="songs coll">
-        <div class="headtxt"><i class="fas fa-heart hdtxt"></i>Ulubione utwory użytkownika <b>nazwa</b></div>
+        {% if token %}
+            <div class="headtxt"><i class="fas fa-heart hdtxt"></i>Ulubione utwory użytkownika <b>{{ Name }}</b></div>
+        {% else %}
+            <div class="headtxt"><i class="fas fa-heart hdtxt"></i>Ulubione utwory</div>
+        {% endif %}
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
@@ -38,7 +42,7 @@
     </div>
     <div class="share">
         <div class="sharebutn">Podziel się swoją listą ze znajomymi:
-        <input type="text" value="id" id="shareid"><i id="cp" class="fas fa-copy" onclick="clipcopy()"></i> </div>
+        <input type="text" value="{{ request.url }}/{{ Token }}" id="shareid"><i id="cp" class="fas fa-copy" onclick="clipcopy()"></i> </div>
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Posłuchaj moich ulubionych utworów w aplikacji AmbiWave!" data-lang="pl" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 {% endblock %}

@@ -37,12 +37,29 @@ def getUserIDbyToken(token):
     else:
         print("getUserIDbyToken - Missing value")
 
-def getUsername(mail):
-    if mail:
+def getToken(ID):
+    if ID:
         try:
             connection = mysql.connect()
             cursor = connection.cursor()
-            cursor.execute("SELECT name FROM Authorization WHERE Mail = '" + str(mail) + "'")
+            cursor.execute("SELECT Token FROM Authorization WHERE ID = '" + str(ID) + "'")
+            Token = cursor.fetchone()
+            cursor.close()
+
+            return Token[0]
+
+        except Exception as Error:
+            print("getToken - Error")
+            print("Error: " + str(Error))
+    else:
+        print("getToken - Missing value")
+
+def getUsername(id):
+    if id:
+        try:
+            connection = mysql.connect()
+            cursor = connection.cursor()
+            cursor.execute("SELECT Name FROM Authorization WHERE ID = '" + str(id) + "'")
             Name = cursor.fetchone()
             cursor.close()
 

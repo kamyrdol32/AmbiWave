@@ -64,7 +64,7 @@ def index():
 
             session['isLogged'] = True
             session['user'] = login_email
-            session['username'] = getUsername(login_email)
+            session['username'] = getUsername(getUserID(login_email))
             session['ID'] = getUserID(login_email)
 
             return redirect("/home")
@@ -165,6 +165,9 @@ def favorite(token=False):
     # Własna playlista
     if not token:
 
+        Name = None
+        Token = getToken(session["ID"])
+
         FavoritesSongs = getFavoritesSongsList(session["ID"])
         for Data in FavoritesSongs:
             Songs.append(getSongInfo(Data))
@@ -174,11 +177,14 @@ def favorite(token=False):
 
         ID = getUserIDbyToken(token)
 
+        Name = getUsername(ID)
+        Token = None
+
         FavoritesSongs = getFavoritesSongsList(ID)
         for Data in FavoritesSongs:
             Songs.append(getSongInfo(Data))
 
-    return render_template("favorite.html", SongsList=Songs)
+    return render_template("favorite.html", SongsList=Songs, token=token, Name=Name, Token=Token)
 
 @app.route('/favorite/add')
 @protected
