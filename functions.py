@@ -253,6 +253,77 @@ def getFavoritesSongsList(UserID):
         print("userActivate - MySQL Error")
         print("Error: " + str(Error))
 
+def getLikes(SongID):
+    try:
+        # Łączność z MYSQL
+        connection = mysql.connect()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT `Song_Like`, `Song_unlike` FROM Songs WHERE ID = '" + str(SongID) + "'")
+        Likes = cursor.fetchone()
+
+        # Development
+        if Type == "Development":
+            print("getLikes: " + str(Likes))
+
+        return Likes
+
+        # Rozłączenie z bazą MySQL
+        cursor.close()
+
+
+    # Error Log
+    except Exception as Error:
+        print("getLikes - MySQL Error")
+        print("Error: " + str(Error))
+
+def getComments(SongID):
+    try:
+        # Łączność z MYSQL
+        connection = mysql.connect()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT `ID`, `Song_ID`, `User_ID`, `Comment` FROM Comments WHERE Song_ID = '" + str(SongID) + "' ORDER BY ID DESC")
+        Comments = cursor.fetchall()
+
+        # Development
+        if Type == "Development":
+            print("getComments: " + str(Comments))
+
+        return Comments
+
+        # Rozłączenie z bazą MySQL
+        cursor.close()
+
+
+    # Error Log
+    except Exception as Error:
+        print("getComments - MySQL Error")
+        print("Error: " + str(Error))
+
+def addComments(SongID, UserID, Comment):
+    if SongID and UserID and Comment:
+        try:
+            # Łączność z MYSQL
+            connection = mysql.connect()
+            cursor = connection.cursor()
+
+            # Dodanie do bazy MySQL
+            to_MySQL = (str(SongID), str(UserID), str(Comment))
+            cursor.execute("INSERT INTO Comments (Song_ID, User_ID, Comment) VALUES (%s, %s, %s)", to_MySQL)
+            connection.commit()
+
+            return True
+
+            # Rozłączenie z bazą MySQL
+            cursor.close()
+
+
+        # Error Log
+        except Exception as Error:
+            print("addComments - MySQL Error")
+            print("Error: " + str(Error))
+
 def addToFavorite(userID, songID):
     if userID and songID:
         try:
@@ -290,6 +361,52 @@ def addToFavorite(userID, songID):
         # Error Log
         except Exception as Error:
             print("addToFavorite - MySQL Error")
+            print("Error: " + str(Error))
+
+def likeSong(SongID):
+    if SongID:
+        try:
+            # Łączność z MYSQL
+            connection = mysql.connect()
+            cursor = connection.cursor()
+
+            cursor.execute("SELECT `Song_Like` FROM Songs WHERE ID = '" + str(SongID) + "'")
+            Likes = cursor.fetchone()
+
+            cursor.execute("UPDATE `Songs` SET `Song_Like` = '" + str(Likes[0] + 1) + "' WHERE ID = '" + str(SongID) + "'")
+            connection.commit()
+
+            return True
+
+            # Rozłączenie z bazą MySQL
+            cursor.close()
+
+        # Error Log
+        except Exception as Error:
+            print("likeSong - MySQL Error")
+            print("Error: " + str(Error))
+
+def unlikeSong(SongID):
+    if SongID:
+        try:
+            # Łączność z MYSQL
+            connection = mysql.connect()
+            cursor = connection.cursor()
+
+            cursor.execute("SELECT `Song_Unlike` FROM Songs WHERE ID = '" + str(SongID) + "'")
+            Unlikes = cursor.fetchone()
+
+            cursor.execute("UPDATE `Songs` SET `Song_Unlike` = '" + str(Unlikes[0] + 1) + "' WHERE ID = '" + str(SongID) + "'")
+            connection.commit()
+
+            return True
+
+            # Rozłączenie z bazą MySQL
+            cursor.close()
+
+        # Error Log
+        except Exception as Error:
+            print("unlikeSong - MySQL Error")
             print("Error: " + str(Error))
 
 ### OTHERS

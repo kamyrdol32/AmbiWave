@@ -151,9 +151,26 @@ def home():
 @protected
 def song(ID):
 
-    print(ID)
+    Info = getSongInfo(ID)
+    Likes = getLikes(ID)
+    Comments = getComments(ID)
 
-    return render_template("song.html")
+    # 8 = 100
+    # 4 = x
+
+    Percent = []
+    Table = []
+
+    Percent.append(Likes[0] * 100 / (Likes[0] + Likes[1]))
+    Percent.append(Likes[1] * 100 / (Likes[0] + Likes[1]))
+
+    print(Percent)
+
+    for Index, Data in enumerate(Comments):
+        Comment = Data[0], Data[1], Data[2], Data[3], getUsername(Data[2])
+        Table.append(Comment)
+
+    return render_template("song.html", Info=Info, Likes=Likes, Comments=Table, Percent=Percent,  ID=ID)
 
 @app.route('/favorite', methods=['POST', 'GET'])
 @app.route('/favorite/<token>', methods=['POST', 'GET'])
@@ -198,6 +215,43 @@ def favorite_add():
     addToFavorite(session["ID"], SongID)
 
     return jsonify(SongID)
+
+@app.route('/like/add', methods=['POST', 'GET'])
+@protected
+def like_add():
+    ID = request.args.get('id', 0, type=int)
+
+    # Development
+    if Type == "Development":
+        print("Like: " + str(ID))
+
+    likeSong(ID)
+
+    return jsonify("Udalo sie")
+
+@app.route('/unlike/add', methods=['POST', 'GET'])
+@protected
+def unlike_add():
+    ID = request.args.get('id', 0, type=int)
+
+    # Development
+    if Type == "Development":
+        print("Unlike: " + str(ID))
+
+    unlikeSong(ID)
+
+    return jsonify("Udalo sie")
+
+@app.route('/comment/add/<int:ID>', methods=['POST', 'GET'])
+@protected
+def comment_add(ID):
+    if request.method == 'POST':
+        Comment = request.form.get('comments', False, type=str)
+        if Comment:
+            if addComments(ID, session["ID"], Comment):
+                flash("Komentarz został pomyślnie dodany!", "success")
+
+    return redirect("/song/" + str(ID))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=70)

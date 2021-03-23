@@ -14,10 +14,11 @@
                 <div class="likes">
                     <dl>
                         <dt>Oceń utwór</dt>
-                        <dd><b>6</b><i class="fas fa-thumbs-up"></i><i class="fas fa-thumbs-down"></i><b>4</b></dd>
+                        <dd class="lk"><b class="lt">{{  Likes[0] }}</b><i class="fas fa-thumbs-up" id="ID_Like" onclick="like('{{ ID }}')"></i></dd>
+                        <dd class="dlk"><i class="fas fa-thumbs-down" id="ID_Dislike" onclick="dislike('{{ ID }}')"></i><b class="rt">{{ Likes[1] }}</b></dd>
                         <dt><div class="bar">
-                            <div class="like" style="width:60%"px></div>
-                            <div class="dislike" style="width:40%"px></div>
+                            <div class="like" style="width:{{ Percent[0] }}%"px></div>
+                            <div class="dislike" style="width:{{ Percent[1] }}%"px></div>
                         </div></dt>
                      </dl>
                 </div>
@@ -26,32 +27,33 @@
                 <div class="info">
                 <dl>
                   <dt>Tytuł:</dt>
-                  <dd>Siema</dd>
+                  <dd>{{ Info[0][1] }}</dd>
                   <dt>Wykonawca:</dt>
-                  <dd>Eluwa</dd>
+                  <dd>{{ Info[0][2] }}</dd>
                   <dt>Czas trwania:</dt>
-                  <dd>3:25</dd>
-                  <dt class="dtright">Odtwórz <i class="fas fa-play" onclick="player_change('22.mp3');"></i></dt>
-                  <dt class="dtright">Dodaj do ulubionych <i class="far fa-heart" onclick=""></i></dt>
+                  <dd>{{ Info[0][3] }}</dd>
+                  <dt class="dtright">Posłuchaj <i class="fas fa-play" onclick="player_change('/static/Songs/{{ Info[0][4] }}');"></i></dt>
                 </dl>
             </div>
         </div>
         <div class="comments">
             <dt>Komentarze<i class="fas fa-comments"></i></dt>
             <div class="commbox">
-                <form action="" method="post">
-                <div>
-                <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1em;"></textarea>
-                </div>
-                <input type="submit" value="Dodaj">
+                    <form action="/comment/add/{{ ID }}" method="post">
+                    <div>
+                        <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1em;"></textarea>
+                    </div>
+                    <input id="comment" type="submit" value="Dodaj">
                 </form>
             </div>
-            <div class="comment">
-             <p class="user"><i class="fas fa-user"></i>domitek</p>
-             <p>ale super nutka :)</p>
-             <p class="user"><i class="fas fa-user"></i>ziomson121423456456</p>
-             <p>normalny, zdrowy, konstruktywny komentarz</p>
-            </div>
+            {% if Comments %}
+                <div class="comment">
+                    {% for Data in Comments %}
+                        <p class="user"><i class="fas fa-user"></i>{{ Data[4] }}</p>
+                        <p>{{ Data[3] }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -30,7 +30,7 @@
                 {% for Data in SongsList %}
                     <tr>
                         <th scope="row">{{ Data[0][0] }}</th>
-                        <td>{{ Data[0][1] }}</td>
+                        <td><a href="/song/{{ Data[0][0] }}">{{ Data[0][1] }}</a></td>
                         <td>{{ Data[0][2] }}</td>
                         <td>{{ Data[0][3] }}</td>
                         <td><i class="fas fa-play" onclick="player_change('/static/Songs/{{ Data[0][4] }}');"></i></td>
