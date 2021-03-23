@@ -454,7 +454,7 @@ i.hdtxt {
 
 .share {
   color: white;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   max-height: 50px;
@@ -493,7 +493,7 @@ i.hdtxt {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   width: 400px;
-  height: 420px;
+  height: 370px;
   margin-top: 60px;
   margin-bottom: 10px;
   border-radius: 25px;
@@ -543,33 +543,56 @@ i.hdtxt {
   transform: scale(3);
 }
 
+.likes i {
+  margin-top: 30px;
+  padding: 10px 15px;
+  transform: scale(3);
+}
+
+.likes b.rt {
+  padding: 0 40px;
+}
+
+.likes b.lt {
+  padding: 0 25px;
+}
+
 .likes dt {
   font-size: 20px;
 }
 
+.likes dd.lk{
+  display: inline-block;
+  margin-right: 100px;
+  margin-left: 15px;
+}
+
+.likes dd.dlk{
+  display: inline-block;
+}
+
+i.fas.fa-thumbs-up {
+    width: 10px;
+}
+
 .bar {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 95px;
   background-color: white;
   height: 10px;
   width: 190px;
-  border-radius: 10px;
 }
 
 .like {
   float: left;
   background-image: linear-gradient(to right, #00a632, #02982a, #028b23, #017e1b, #007114);
   height: 10px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
 }
 
 .dislike {
   float: right;
   background-image: linear-gradient(to left, #e52d27, #d82723, #cc201f, #bf191b, #b31217);
   height: 10px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 .comments {
@@ -692,19 +715,19 @@ i.hdtxt {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.9);
-  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
