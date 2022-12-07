@@ -28,5 +28,7 @@
   - Tworznie playlist
   - Usuwanie playlist
   - Upublicznianie playlist
-
+  
 # Zdjęcia
+### Strona głowna
+![Strona Glowna](https://i.imgur.com/jtR8JRG.png)
