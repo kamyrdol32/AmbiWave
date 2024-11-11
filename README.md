@@ -6,8 +6,8 @@ This application is a music streaming platform with a simplified and streamlined
 
 | Author | Backend | Frontend |
 | :---: | :---: | :---: |
-| **Kamil Żegleń** ([kamyrdol32](https://github.com/kamyrdol32))  | ![100%](https://progress-bar.dev/100)  | ![10%](https://progress-bar.dev/10)  |
-| **Dominik Rzepka** ([domit3k](https://github.com/domit3k))  | ![0%](https://progress-bar.dev/0)  | ![90%](https://progress-bar.dev/90)  |
+| **Kamil Żegleń** ([kamyrdol32](https://github.com/kamyrdol32))  | 100% | 10% |
+| **Dominik Rzepka** ([domit3k](https://github.com/domit3k))  | 0% | 90% |
 
 ## Installation
 `Comming soon`
